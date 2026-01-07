@@ -47,3 +47,6 @@ No shell reload needed—new scripts are available immediately.
 | Command           | Description                            |
 | ----------------- | -------------------------------------- |
 | `killport <port>` | Kill process running on specified port |
+| `gcom`            | Checkout main branch                   |
+| `gac <message>`   | Add and commit changes                 |
+| `ghist`           | Show git history                       |
