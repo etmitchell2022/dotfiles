@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Find the main branch (main, master, or develop)
+main_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+
+# Fallback: check which branch exists
+if [ -z "$main_branch" ]; then
+  if git show-ref --verify --quiet refs/heads/main; then
+    main_branch="main"
+  elif git show-ref --verify --quiet refs/heads/master; then
+    main_branch="master"
+  elif git show-ref --verify --quiet refs/heads/develop; then
+    main_branch="develop"
+  else
+    echo "Could not find main, master, or develop branch"
+    exit 1
+  fi
+fi
+
+git checkout "$main_branch" && git pull --rebase
