@@ -50,3 +50,4 @@ No shell reload needed—new scripts are available immediately.
 | `gcom`            | Checkout main branch                   |
 | `gac <message>`   | Add and commit changes                 |
 | `ghist`           | Show git history                       |
+| `tginit <env> <region> <foldername>`           | Initialize single env + region                      |

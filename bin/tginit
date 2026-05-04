@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+env="${1:?Usage: tginit <env> <region> <integration>}"
+region="${2:?Usage: tginit <env> <region> <integration>}"
+integration="${3:?Usage: tginit <env> <region> <integration>}"
+
+REPO_ROOT="$(pwd)"
+
+echo "→ Sourcing ${REPO_ROOT}/live/${env}/.env"
+set -a
+source "${REPO_ROOT}/live/${env}/.env"
+set +a
+
+echo "→ Running terragrunt init for ${integration} in ${env}/${region}"
+terragrunt run --all --provider-cache \
+  --working-dir "${REPO_ROOT}/live/${env}/${region}/${integration}" \
+  -- init
